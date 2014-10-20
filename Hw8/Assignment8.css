@@ -1,0 +1,53 @@
+  html
+            {
+            
+            overflow-y:scroll;
+            scrollbar:true;
+            }
+                body {
+                    background-image: url('background.jpg');<!--'http://www.businessreviewaustralia.com/sectors/assets_c/2010/07/stock_market_1-thumb-610x335-17302');-->
+                    background-repeat: no-repeat;
+                    background-size: cover; 
+                    background-attachment: fixed;
+                }
+                .pure-form
+                {
+                    <!-- position: fixed; -->
+                    margin-top: 20px;
+                }
+                #symbol
+                {
+                   width:550px;
+                   <!-- position: fixed; -->
+                   <!--margin-left: 500px;
+                   margin: 0 10px;
+                   height: 30px; -->
+                }
+                #searchButton
+                {
+                    <!-- position: fixed; -->
+                    margin-left: 845px;
+                    margin-top: 1px;
+                    padding: 4px;
+                    width: 100px;
+                    border-radius: 5px;
+                }
+              .tab
+              {
+                <!-- position: fixed;  -->
+                <!-- margin-top: 180px;
+                margin-left: 0px;  -->
+                
+              }
+              #headerStructure
+              {
+                <!-- position: fixed;  -->
+                 margin-top: 0px;
+                font-size: 150%;
+                margin-left: 0px; 
+              }
+               #tablePosition
+                {
+                width: 1000px; 
+                }
+                

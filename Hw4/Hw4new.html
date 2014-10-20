@@ -1,0 +1,78 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function loadXML()
+{
+var url = document.getElementById("url").value;
+
+var xmlhttp="";
+var xmlDoc = "";
+if(window.XMLHttpRequest)
+xmlhttp = new XMLHttpRequest();
+else
+xmlhttp = new ActiveXObject("Microsoft.XMLHttpRequest");
+
+xmlhttp.open("GET",url,false);
+xmlhttp.send();
+if(xmlhttp.status==404)
+{
+    alert("Error");
+    return;
+}
+xmlDoc = xmlhttp.responseXML;
+if(xmlDoc==null)
+{
+    alert("Invalid xml");
+    return;
+}
+if(xmlDoc.documentElement.nodeName=="parserrror")
+{
+    alert("Invalid xml");
+    return;
+}
+
+var rootElem = xmlDoc.documentElement;
+var plants = rootElem.getElementsByTagName("PLANT");
+ var html = "";
+ plants = plants.childNodes;
+
+ for(var i=0;i<plants.length;i++)
+{
+    plantElement = plants[i];
+    if(plantElement.nodeType== Node.ELEMENT_NODE)
+    {
+            plantElementList = plantElement.firstChild.nodeValue;
+            alert(plantElementList);
+          
+     
+
+     
+    }   
+
+}
+
+document.write(html);
+
+
+
+}
+
+function getValue(node)
+{
+    if(node==null)
+        return "NA";
+    else
+        return node.nodeValue;
+}
+
+</script>
+
+</head>
+<body>
+<form name="form1" onsubmit="loadXML()">
+<input type=text name="url" id="url" value="plant_catalog.xml"/>
+<br/><input type="submit" value="submit"/>
+</form>
+</body>
+</html>

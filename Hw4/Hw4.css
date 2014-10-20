@@ -1,0 +1,26 @@
+
+#xmlSubmit
+{
+position:fixed;
+font-size:20px;
+text-align:center;
+left:500px;
+top:100px;
+}
+
+.imgspecs
+{
+    width:200px;
+    height:200px;
+    
+}
+
+.t1
+{
+font-weight:bold;
+text-align:center;
+}
+.td1
+{
+    text-align=left;
+   }

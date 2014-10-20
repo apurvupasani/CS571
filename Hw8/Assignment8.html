@@ -1,0 +1,148 @@
+    <html>
+        <head>
+             <title>
+                Assignment 8
+            </title>
+            <link rel="stylesheet" type="text/css" href="Assignment8.css">
+           <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <script src="http://yui.yahooapis.com/3.15.0/build/yui/yui-min.js"></script>
+            <script src = "Assignment8.js" type="text/javascript"> </script>
+        </head>
+    <body class="yui3-skin-sam" id="body">
+    <div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '1490542934501905', 
+      channelUrl : '//cs-server.usc.edu:13562/examples/servlets/channel.html',
+      status     : true,
+      xfbml      : true
+    });
+  };
+
+  // Load the SDK asynchronously
+  (function(){
+     if (document.getElementById('facebook-jssdk')) {return;}
+     var firstScriptElement = document.getElementsByTagName('script')[0];
+     var facebookJS = document.createElement('script'); 
+     facebookJS.id = 'facebook-jssdk';
+     facebookJS.src = '//connect.facebook.net/en_US/all.js';
+     firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+   }());
+
+</script>
+      
+        <form class="pure-form" name="market_search" id="market_search" style="margin-left:150px;margin-top:70px;">
+            <label for="symbol" style="font-size: 100%;color:white;font-size:150%;">Company:</label>
+            <input type="text" id="symbol" name="symbol" placeholder="Enter company symbol" class="pure-input-1-4" autofocus onkeypress="this.value = this.value.toUpperCase();"/>
+            <button type="submit" class="pure-button" style="cursor:pointer" id="searchButton">Search</button>
+            </form>
+      
+    <div id="displayPart" style="display:none">  
+        <div id="headerStructure">
+        <center>
+        <table width="1000" style="margin-top:70px;">
+        <tr>
+        <td style="">
+        <div id="headSection" style="font-weight: bold;color: white; width:500px;font-size:195%;"><div id="companyNameNSymbol"></div> 
+        <div id="LastTradePrice" style="width:500px;font-weight:bold;font-size:245%;"></div></div>
+        <img border="0" src="fb.gif"  alt="Facebook" width="130" height="40" style="cursor:pointer" id="fb-post">
+        </td>
+        <td style="height:150px;">
+        <img border="0" src="#" width="300" height="150" style="margin-left:250px;margin-top:0px;" id="stockChartImage"/>
+        </td>
+        </tr>
+        <tr>
+        <td style="" rowspan="1" colspan="2">
+         <hr style="color: white;width: 100%;margin-left: 0px;"></hr>
+        </td>
+        </tr>
+        <tr>
+        <td style="" rowspan="1" colspan="2">
+                <div class="yui3-widget yui3-tabview">
+        <div id="demo" class="yui3-tabview-content">
+            <ul class="yui3-tabview-list">
+                <li class="yui3-tab yui3-widget yui3-tab-selected">
+                    <a href="#foo" class="yui3-tab-label yui3-tab-content" style=""><font size="+1">Quote Information</font></a>
+                </li>
+                <li class="yui3-tab yui3-widget">
+                    <a href="#bar" class="yui3-tab-label yui3-tab-content" style=""><font size="+1">News Headlines</font></a>
+                </li>
+                </ul>
+            
+            <div class="yui3-tabview-panel">
+                <div id="foo" class="yui3-tab-panel"><div>
+                <table id="tablePosition" cellpadding ="0">
+            <tr>
+                <td>
+                    Prev Close :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="PrevClose"></div><td></td>
+                </td>
+                </td>
+                <td></td>
+                <td> 
+                    Day's Range :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="DaysRange"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Open :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="Open"></div><td></td>
+                </td>
+                <td></td>
+                <td>
+                    52wk Range :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="YearRange"></div></td>
+            </tr>
+            <tr>
+                <td>
+                    Bid :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td style="text-align: right;"><div id ="Bid"></div><td></td>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    Volume :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="Volume"></div>          </td>
+            </tr>
+            <tr>
+                <td>
+                    Ask :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="Ask"></div><td></td>
+                </td>
+                <td></td>
+                <td>
+                    Avg Vol (3m) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="AvgVolume"></div>       </td>
+            </tr>
+            <tr>
+                <td>
+                    ly Target Est :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="TargetEst"></div><td></td>
+                </td>
+                <td></td>
+                <td>
+                    Market Cap :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td><td style="text-align: right;"><div id ="MarketCap"></div>          </td>
+            </tr>
+            
+            
+        </table>
+            <br/></div></div>
+                <div id="bar" class="yui3-tab-panel" style="width: 1000px;"><div id="newsFeeds" style=""><font size="+1"></font></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </td>
+        </tr>
+        </table>
+    </center>
+</div>
+</div>
+        <div id="noStockDiv" style="display:none;margin-top:100px;margin-left:400px;">
+        </div>
+    <NOSCRIPT>
+    </body>
+    </html>
